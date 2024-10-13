@@ -95,4 +95,4 @@ def summarize_video():
     return jsonify({'video_id': video_id, 'summary': summary})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
