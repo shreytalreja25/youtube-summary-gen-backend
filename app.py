@@ -68,6 +68,9 @@ def summarize_text_with_gemini(text):
         print(f"Error summarizing the text with Gemini: {e}")
         return "Error summarizing the text"
 
+@app.route('/')
+def home():
+    return "YouTube Summarizer API Services are running!"
 
 # API Endpoint for summarizing a YouTube lecture
 @app.route('/summarize', methods=['POST'])
