@@ -5,6 +5,7 @@ import re
 from flask_cors import CORS
 from dotenv import load_dotenv  # Import dotenv
 import os
+from gevent.pywsgi import WSGIServer  # Import WSGIServer from gevent
 
 app = Flask(__name__)
 CORS(app)
@@ -98,4 +99,6 @@ def summarize_video():
     return jsonify({'video_id': video_id, 'summary': summary})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    # Use WSGIServer for production instead of Flask's built-in server
+    http_server = WSGIServer(('0.0.0.0', int(os.environ.get('PORT', 5000))), app)
+    http_server.serve_forever()
